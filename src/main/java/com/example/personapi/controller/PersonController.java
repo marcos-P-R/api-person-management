@@ -2,6 +2,7 @@ package com.example.personapi.controller;
 
 import com.example.personapi.dto.MessageResponseDTO;
 import com.example.personapi.dto.request.PersonDTO;
+import com.example.personapi.exception.PersonNotFoundException;
 import com.example.personapi.model.Person;
 import com.example.personapi.repository.PersonRepository;
 import com.example.personapi.service.PersonService;
@@ -32,5 +33,10 @@ public class PersonController {
 	@GetMapping
 	public List<PersonDTO> listAll(){
 		return personService.listAll();
+	}
+
+	@GetMapping("/{id}")
+	public PersonDTO findByID(@PathVariable Long id) throws PersonNotFoundException {
+		return personService.findById(id);
 	}
 }
